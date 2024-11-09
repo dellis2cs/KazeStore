@@ -1,94 +1,94 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext } from "react";
 import Header from "./Header";
+import { useCart } from "./CartContext";
 
-const categories = [
-  "electronics",
-  "jewelery",
-  "men's clothing",
-  "women's clothing",
-];
 
-const useFetchProducts = () => {
-  const [products, setProducts] = useState({});
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchAllProducts = async () => {
-      try {
-        const categoryProducts = await Promise.all(
-          categories.map(async (category) => {
-            const response = await fetch(
-              `https://fakestoreapi.com/products/category/${category}`
-            );
-            if (response.status >= 400) {
-              throw new Error("server error");
-            }
-            const data = await response.json();
-            return { category, products: data };
-          })
-        );
-
-        // Convert the array of results into an object with categories as keys
-        const productsByCategory = categoryProducts.reduce(
-          (acc, { category, products }) => {
-            acc[category] = products;
-            return acc;
-          },
-          {}
-        );
-
-        setProducts(productsByCategory);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchAllProducts();
-  });
-
-  return { products, error, loading };
-};
 
 export default function Shop() {
-  const { products, error, loading } = useFetchProducts();
+  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const {addItemToCart} = useCart()
 
-  if (loading)
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      setIsLoading(true);
+      const response = await fetch(
+        "https://fakestoreapi.com/products/categories"
+      );
+      const categoryData = await response.json();
+      setCategories(categoryData);
+      setIsLoading(false);
+    };
+
+    fetchCategories();
+  }, []);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setIsLoading(true);
+
+      const results = await Promise.all(
+        categories.map(async (category) => {
+          const response = await fetch(
+            `https://fakestoreapi.com/products/category/${category}`
+          );
+          return await response.json();
+        })
+      );
+
+      setProducts(results);
+      setIsLoading(false);
+    };
+
+    fetchProducts();
+  }, [categories]);
+
+  if (isLoading) {
     return (
-      <>
+      <div className="loading">
         <Header />
-        <p>Loading...</p>
-      </>
+        <div className="loadingContainer">Loading...</div>
+      </div>
     );
-  if (error) return <p>A network error was encountered</p>;
+  }
 
   return (
-    <>
+    <div>
       <Header />
       <div className="cardsContainer">
-        {Object.entries(products).map(([category, items]) => (
-          <div key={category} className="categorySection">
-            <h2>{category}</h2>
+        {products.map((category, categoryIndex) => (
+          <div className="categorySection" key={categoryIndex}>
+            <h1>{categories[categoryIndex]}</h1>
+
             <div className="productsGrid">
-              {items.map((data) => (
-                <div className="productCard" key={data.id}>
+              {category.map((product, productIndex) => (
+                <div
+                  className="productCard"
+                  key={`${categoryIndex}-${productIndex}`}
+                >
                   <div className="productImageContainer">
                     <img
-                      src={data.image}
-                      alt={data.title}
+                      src={product.image}
+                      alt={product.title}
                       className="productImage"
                     />
                   </div>
-                  <p className="productName">{data.title}</p>
-                  <p className="productPrice">${data.price}</p>
+                  <p className="productName">{product.title}</p>
+                  <p className="productPrice">${product.price}</p>
+                  <button
+                    className="addToCart"
+                    onClick={() => addItemToCart(product)} // Pass the entire product object
+                  >
+                    Add to cart
+                  </button>
                 </div>
               ))}
             </div>
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }

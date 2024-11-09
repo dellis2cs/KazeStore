@@ -25,6 +25,7 @@
 
 .cardsContainer {
   display: flex;
+  flex-direction: column;
   padding: 20px;
   flex-wrap: wrap;
   justify-content: center;
@@ -33,15 +34,17 @@
 .productCard {
   border: 1px solid rgba(0, 0, 0, 0.3);
   width: 250px;
+  height: 350px; /* Set a fixed height for uniformity */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between; /* Space items evenly in the card */
   align-items: center;
   gap: 10px;
   padding: 20px;
   box-sizing: border-box;
   border-radius: 15px;
   box-shadow: 0.2px 14.4px 14.4px hsl(0deg 0% 0% / 0.08);
+  text-align: center; /* Center-align text */
 }
 
 .productsGrid {
@@ -52,12 +55,68 @@
 .productImageContainer {
   padding: 10px;
   border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px; /* Fixed height for the image container */
 }
 
 .productImage {
   width: 100px;
+  height: auto;
+  max-height: 100px; /* Constrain image height within the container */
+  object-fit: contain; /* Ensure images are fully visible */
+}
+
+.productName {
+  font-size: 1rem;
+  min-height: 40px; /* Add minimum height for uniformity */
+  
+ 
 }
 
 .productPrice {
   align-self: baseline;
+  font-weight: bold;
+  
+}
+
+
+.loadingContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 40px;
+}
+
+.categorySection{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.addToCart,.removeFromCart{
+  padding: 8px;
+  color: white;
+  background-color: black;
+  border: none;
+  border-radius: 15px;
+  font-size: 12px;
+  transition: all 0.25s ease;
+}
+
+.addToCart:hover,.removeFromCart:hover{
+  
+    background-color: white;
+    color: black;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+  
+}
+
+.cartContainer{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
