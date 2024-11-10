@@ -1,6 +1,6 @@
 # Kaze E-Commerce Landing Page
 
-Welcome to **Kaze**, an e-commerce web app built with React. This project includes , and benefits of shopping with Kaze, offering a clean and modern design for a welcoming user experience.
+Welcome to **Kaze**, an e-commerce web app built with React. Kaze is an online ecommerce web platform designed to help consumers find whatever they need from electronics to clothing.
 
 ## Table of Contents
 - [Features](#features)
@@ -11,11 +11,11 @@ Welcome to **Kaze**, an e-commerce web app built with React. This project includ
 
 ## Features
 
-- **Hero Section** with a welcoming message, background image, and call-to-action button.
-- **Responsive Design** that adapts smoothly across desktop and mobile devices.
+- **Landing Page** with a welcoming message, background image, and shop navigation.
 - **Featured Categories** with images and links to shop by category.
 - **Benefits Section** showcasing reasons to shop with Kaze (e.g., free shipping, secure payment).
 - **Modern Aesthetic** with subtle animations, clean typography, and a visually appealing layout.
+- **Cart and Checkout** features
 
 ## Technologies Used
 
