@@ -25,6 +25,10 @@ export default function Shop() {
     fetchCategories();
   }, []);
 
+  const filterCategory = (category) => {
+    setCategories([category]);
+  }
+
   useEffect(() => {
     const fetchProducts = async () => {
       setIsLoading(true);
@@ -58,10 +62,10 @@ export default function Shop() {
     <div>
       <Header />
       <div className="categoryChooser">
-        <button>Electronics</button>
-        <button>Jewlery</button>
-        <button>Men's</button>
-        <button>Women's</button>
+        <button className="categoryBtn" onClick={() => filterCategory("electronics")}>Electronics</button>
+        <button className="categoryBtn" onClick={() => filterCategory("jewelery")}>Jewlery</button>
+        <button className="categoryBtn" onClick={() => filterCategory("men's clothing")}>Men's</button>
+        <button className="categoryBtn" onClick={() => filterCategory("women's clothing")}>Women's</button>
       </div>
       <div className="cardsContainer">
         {products.map((category, categoryIndex) => (
