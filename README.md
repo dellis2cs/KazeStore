@@ -1,8 +1,52 @@
-# Kaze
+# Kaze E-Commerce Landing Page
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to **Kaze**, an e-commerce web app built with React. This project includes , and benefits of shopping with Kaze, offering a clean and modern design for a welcoming user experience.
 
-Currently, two official plugins are available:
+## Table of Contents
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Getting Started](#getting-started)
+- [Installation](#installation)
+- [Running the Application](#usage)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+
+- **Hero Section** with a welcoming message, background image, and call-to-action button.
+- **Responsive Design** that adapts smoothly across desktop and mobile devices.
+- **Featured Categories** with images and links to shop by category.
+- **Benefits Section** showcasing reasons to shop with Kaze (e.g., free shipping, secure payment).
+- **Modern Aesthetic** with subtle animations, clean typography, and a visually appealing layout.
+
+## Technologies Used
+
+- **React** - For building the user interface.
+- **React Router** - For handling page navigation.
+- **CSS3** - For styling the components and layout.
+- **React Icons** - For icons used in navigation and benefits sections.
+
+## Getting Started
+
+### Prerequisites
+
+- **Node.js** and **npm** installed on your system. You can download them [here](https://nodejs.org/).
+
+### Installation
+
+- To get started, clone the repository and install dependencies
+  
+   ```bash
+   git clone git@github.com:dellis2cs/KazeStore.git
+   ```
+   ```bash
+   cd KazeStore
+   ```
+   ```bash
+   npm install
+   ```
+
+## Usage
+
+Run the application
+```bash
+npm run dev
+   ```
