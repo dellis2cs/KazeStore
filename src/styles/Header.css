@@ -1,0 +1,90 @@
+/* General Layout */
+.headerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 30px;
+  
+}
+
+.leftHeader .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.middleHeader {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Search Bar Styling */
+.searchBar {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  width: 200px;
+  transition: box-shadow 0.3s ease;
+}
+
+.searchBar:focus {
+  outline: none;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+}
+
+/* Navigation Links */
+.Link {
+  color: #333;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.Link:hover,
+.Link.active {
+  color: #007bff;
+}
+
+/* Cart Icon and Badge */
+.cartIcon {
+  position: relative;
+}
+
+
+.headerCart{
+    color: black; 
+}
+
+a {
+    text-decoration: none;
+  }
+
+
+
+.cartIcon{
+    transition: all 0.25s ease;
+}
+
+.cartIcon:hover{
+    color:#007bff
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .headerContainer {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 20px;
+  }
+
+  .middleHeader {
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .searchBar {
+    width: 100%;
+  }
+}

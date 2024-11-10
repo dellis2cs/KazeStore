@@ -41,7 +41,7 @@ export default function Cart() {
                   className="removeFromCart"
                   onClick={() => removeItemFromCart(product)}
                 >
-                  Remove to cart
+                  Remove from cart
                 </button>
                 <div className="quantityButtons">
                   <button

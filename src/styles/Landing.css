@@ -1,178 +1,194 @@
-.headerContainer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 30px;
+/* Global Styles */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
-  overflow-x: hidden;
-}
-
-.middleHeader {
-  display: flex;
-  gap: 10px;
-}
-
-.categoryChooser{
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-
-
-/* CSS */
-.categoryBtn {
-  align-items: center;
-  background-color: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: .25rem;
-  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
-  box-sizing: border-box;
-  color: rgba(0, 0, 0, 0.85);
-  cursor: pointer;
-  display: inline-flex;
-  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  justify-content: center;
-  line-height: 1.25;
   margin: 0;
-  min-height: 3rem;
-  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+  padding: 0;
+}
+
+
+.landingBackground {
+    background-image: url("/images/HeroBG.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Landing Page Container */
+  .landingContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+
+/* Hero Section */
+.heroSection {
+  
+  width: 100%;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  text-align: center;
   position: relative;
-  text-decoration: none;
-  transition: all 250ms;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: baseline;
-  width: auto;
 }
 
-.categoryBtn:hover,
-.categoryBtn:focus {
-  border-color: rgba(0, 0, 0, 0.15);
-  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
-  color: rgba(0, 0, 0, 0.65);
+.heroSection::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150%;
+  height: 100%;
+  
+  z-index: -1;
+  pointer-events: none;
 }
 
-.categoryBtn:hover {
-  transform: translateY(-1px);
+.heroContent {
+  max-width: 600px;
+  padding: 20px;
 }
 
-.categoryBtn:active {
-  background-color: #F0F0F1;
-  border-color: rgba(0, 0, 0, 0.15);
-  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
-  color: rgba(0, 0, 0, 0.65);
-  transform: translateY(0);
-}
-
-.Link {
-  text-decoration: none;
+.heroContent h1 {
+  font-size: 3rem;
   font-weight: bold;
-  color: black;
-  transition: all 0.25s ease;
+  color: #333;
+  margin-bottom: 10px;
 }
 
-.Link:hover {
-  color: rgb(0, 183, 255);
+.heroContent p {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 20px;
+  line-height: 1.6;
 }
 
-.cardsContainer {
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-}
-
-.productCard {
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  width: 250px;
-  height: 350px; /* Set a fixed height for uniformity */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* Space items evenly in the card */
-  align-items: center;
-  gap: 10px;
-  padding: 20px;
-  box-sizing: border-box;
-  border-radius: 15px;
-  box-shadow: 0.2px 14.4px 14.4px hsl(0deg 0% 0% / 0.08);
-  text-align: center; /* Center-align text */
-}
-
-.productsGrid {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.productImageContainer {
-  padding: 10px;
-  border-radius: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 150px; /* Fixed height for the image container */
-}
-
-.productImage {
-  width: 100px;
-  height: auto;
-  max-height: 100px; /* Constrain image height within the container */
-  object-fit: contain; /* Ensure images are fully visible */
-}
-
-.productName {
+.ctaButton {
+  display: inline-block;
+  padding: 12px 24px;
   font-size: 1rem;
-  min-height: 40px; /* Add minimum height for uniformity */
-  
- 
+  color: #ffffff;
+  background-color: #333;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
 }
 
-.productPrice {
-  align-self: baseline;
-  font-weight: bold;
-  
+.ctaButton:hover {
+  background-color: #555;
 }
 
-
-.loadingContainer{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  font-size: 40px;
+/* Categories Section */
+.categoriesSection {
+  padding: 60px 0;
+  text-align: center;
 }
 
-.categorySection{
+.categoriesSection h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.categoriesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  width: 100%;
+  max-width: 1000px;
+  margin-top: 20px;
+}
+
+.categoryCard {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.addToCart,.removeFromCart{
-  padding: 8px;
-  color: white;
-  background-color: black;
-  border: none;
-  border-radius: 15px;
-  font-size: 12px;
-  transition: all 0.25s ease;
+.categoryCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
-.addToCart:hover,.removeFromCart:hover{
-  
-    background-color: white;
-    color: black;
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    transform: scale(1.1);
-  
+.categoryCard img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
 }
 
-.cartContainer{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+.categoryCard p {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  padding: 16px;
+}
+
+/* Benefits Section */
+.benefitsSection {
+  padding: 50px 0;
+  text-align: center;
+  width: 100%;
+}
+
+.benefitsSection h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+}
+
+.benefitsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.benefitCard {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
+  color: #555;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.benefitCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .heroContent h1 {
+    font-size: 2.5rem;
+  }
+
+  .heroContent p {
+    font-size: 1rem;
+  }
+
+  .ctaButton {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+  }
 }

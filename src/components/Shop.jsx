@@ -1,53 +1,70 @@
-import { useState, useEffect, createContext } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Header from "./Header";
 import { useCart } from "./CartContext";
-
-
+import "../styles/Shop.css"
 
 export default function Shop() {
-  const [products, setProducts] = useState([]);
+  // State for all products and filtered products based on selected category
+  const [allProducts, setAllProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const {addItemToCart} = useCart()
+  const { addItemToCart } = useCart(); // Access the cart context
 
   const fetchCategories = async () => {
-    setIsLoading(true);
-    const response = await fetch(
-      "https://fakestoreapi.com/products/categories"
-    );
-    const categoryData = await response.json();
-    setCategories(categoryData);
-    setIsLoading(false);
+    try {
+      setIsLoading(true);
+      const response = await fetch(
+        "https://fakestoreapi.com/products/categories"
+      );
+      const categoryData = await response.json();
+      setCategories(categoryData); // Store categories for filtering
+      setIsLoading(false);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
-
-    fetchCategories();
-  }, []);
-
-  const filterCategory = (category) => {
-    setCategories([category]);
-  }
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      setIsLoading(true);
-
-      const results = await Promise.all(
-        categories.map(async (category) => {
-          const response = await fetch(
-            `https://fakestoreapi.com/products/category/${category}`
-          );
-          return await response.json();
-        })
-      );
-
-      setProducts(results);
-      setIsLoading(false);
+    const fetchAllProducts = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch("https://fakestoreapi.com/products");
+        const productData = await response.json();
+        setAllProducts(productData); // Store all products in a single state
+        setFilteredProducts(productData); // Initially show all products
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+        setIsLoading(false);
+      }
     };
 
-    fetchProducts();
-  }, [categories]);
+    fetchAllProducts();
+    fetchCategories(); // Fetch categories on component mount
+  }, []);
+
+  // Filter function to set selected category and filtered products
+  const filterCategory = (category) => {
+    setSelectedCategory(category); // Set the current category
+    if (!category) {
+      setFilteredProducts(allProducts); // Show all products if no category is selected
+    } else {
+      setFilteredProducts(
+        allProducts.filter((product) => product.category === category)
+      );
+    }
+  };
+
+  // Calculate filtered products using useMemo for optimized re-renders
+  const productsToDisplay = useMemo(() => {
+    if (!selectedCategory) return allProducts;
+    return allProducts.filter(
+      (product) => product.category === selectedCategory
+    );
+  }, [allProducts, selectedCategory]);
 
   if (isLoading) {
     return (
@@ -58,47 +75,57 @@ export default function Shop() {
     );
   }
 
+  // Optimized add-to-cart handler to avoid recreating inline functions
+  const handleAddToCart = (product) => {
+    addItemToCart(product);
+  };
+
   return (
     <div>
       <Header />
       <div className="categoryChooser">
-      <button className="categoryBtn" onClick={() => fetchCategories()}>All</button>
-        <button className="categoryBtn" onClick={() => filterCategory("electronics")}>Electronics</button>
-        <button className="categoryBtn" onClick={() => filterCategory("jewelery")}>Jewlery</button>
-        <button className="categoryBtn" onClick={() => filterCategory("men's clothing")}>Men's</button>
-        <button className="categoryBtn" onClick={() => filterCategory("women's clothing")}>Women's</button>
+        {/* "All" button to reset category filter */}
+        <button className="categoryBtn" onClick={() => filterCategory(null)}>
+          All
+        </button>
+        {/* Dynamically generate category buttons */}
+        {categories.map((category) => (
+          <button
+            key={category}
+            className="categoryBtn"
+            onClick={() => filterCategory(category)}
+          >
+            {category.charAt(0).toUpperCase() + category.slice(1)}
+          </button>
+        ))}
       </div>
       <div className="cardsContainer">
-        {products.map((category, categoryIndex) => (
-          <div className="categorySection" key={categoryIndex}>
-            <h1>{categories[categoryIndex]}</h1>
-
-            <div className="productsGrid">
-              {category.map((product, productIndex) => (
-                <div
-                  className="productCard"
-                  key={`${categoryIndex}-${productIndex}`}
-                >
-                  <div className="productImageContainer">
-                    <img
-                      src={product.image}
-                      alt={product.title}
-                      className="productImage"
-                    />
-                  </div>
-                  <p className="productName">{product.title}</p>
-                  <p className="productPrice">${product.price}</p>
-                  <button
-                    className="addToCart"
-                    onClick={() => addItemToCart(product)} // Pass the entire product object
-                  >
-                    Add to cart
-                  </button>
+        {productsToDisplay.length > 0 ? (
+          <div className="productsGrid">
+            {productsToDisplay.map((product) => (
+              <div className="productCard" key={product.id}>
+                <div className="productImageContainer">
+                  <img
+                    src={product.image}
+                    alt={product.title}
+                    className="productImage"
+                  />
                 </div>
-              ))}
-            </div>
+                <p className="productName">{product.title}</p>
+                <p className="productPrice">${product.price}</p>
+
+                <button
+                  className="addToCart"
+                  onClick={() => handleAddToCart(product)}
+                >
+                  Add to cart
+                </button>
+              </div>
+            ))}
           </div>
-        ))}
+        ) : (
+          <p>No products found.</p>
+        )}
       </div>
     </div>
   );

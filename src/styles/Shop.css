@@ -1,0 +1,227 @@
+/* Global Styles and Variables */
+:root {
+  --primary-color: #000;
+  --secondary-color: #f0f0f1;
+  --hover-color: #00b7ff;
+  --text-color: rgba(0, 0, 0, 0.85);
+  --border-color: rgba(0, 0, 0, 0.15);
+  --font-family: system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --transition-speed: 0.25s;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--text-color);
+  overflow-x: hidden;
+}
+
+/* Header Styles */
+.headerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 30px;
+}
+
+/* Centered Section in Header */
+.middleHeader {
+  display: flex;
+  gap: 10px;
+}
+
+.headerCart{
+  display: flex;
+  gap: 10px;
+}
+
+/* Category Chooser */
+.categoryChooser {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px 0;
+}
+
+/* CSS */
+.categoryBtn {
+  align-items: center;
+  background-color: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.85);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 3rem;
+  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
+}
+
+.categoryBtn:hover,
+.categoryBtn:focus {
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.categoryBtn:hover {
+  transform: translateY(-1px);
+}
+
+.categoryBtn:active {
+  background-color: #F0F0F1;
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+  color: rgba(0, 0, 0, 0.65);
+  transform: translateY(0);
+}
+
+/* Link Styling */
+.Link {
+  text-decoration: none;
+  font-weight: bold;
+  color: var(--primary-color);
+  transition: color var(--transition-speed);
+}
+
+.Link:hover {
+  color: var(--hover-color);
+}
+
+/* Card Container */
+.cardsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Product Card */
+.productCard {
+  width: 250px;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+  text-align: center;
+}
+
+.productCard:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Products Grid */
+.productsGrid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Product Image Container */
+.productImageContainer {
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+}
+
+.productImage {
+  width: 100px;
+  max-height: 100px;
+  object-fit: contain;
+}
+
+.productName {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-color);
+  min-height: 40px;
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide overflowed text */
+  text-overflow: ellipsis; /* Show ellipsis if text is too long */
+  width: 100%; /* Ensure the text takes up the available space */
+}
+
+/* Product Price */
+.productPrice {
+  font-weight: bold;
+  color: var(--primary-color);
+  font-size: 1.1rem;
+}
+
+/* Loading Container */
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 2rem;
+  color: var(--primary-color);
+}
+
+/* Category Section */
+.categorySection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Add to Cart and Remove from Cart Buttons */
+.addToCart,
+.removeFromCart {
+  padding: 8px 16px;
+  color: #fff;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+.addToCart:hover,
+.removeFromCart:hover {
+  background-color: #fff;
+  color: var(--primary-color);
+  border: 1px solid var(--border-color);
+  transform: scale(1.05);
+}
+
+.cartContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
