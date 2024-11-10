@@ -10,17 +10,17 @@ export default function Shop() {
   const [isLoading, setIsLoading] = useState(false);
   const {addItemToCart} = useCart()
 
+  const fetchCategories = async () => {
+    setIsLoading(true);
+    const response = await fetch(
+      "https://fakestoreapi.com/products/categories"
+    );
+    const categoryData = await response.json();
+    setCategories(categoryData);
+    setIsLoading(false);
+  };
 
   useEffect(() => {
-    const fetchCategories = async () => {
-      setIsLoading(true);
-      const response = await fetch(
-        "https://fakestoreapi.com/products/categories"
-      );
-      const categoryData = await response.json();
-      setCategories(categoryData);
-      setIsLoading(false);
-    };
 
     fetchCategories();
   }, []);
@@ -62,6 +62,7 @@ export default function Shop() {
     <div>
       <Header />
       <div className="categoryChooser">
+      <button className="categoryBtn" onClick={() => fetchCategories()}>All</button>
         <button className="categoryBtn" onClick={() => filterCategory("electronics")}>Electronics</button>
         <button className="categoryBtn" onClick={() => filterCategory("jewelery")}>Jewlery</button>
         <button className="categoryBtn" onClick={() => filterCategory("men's clothing")}>Men's</button>

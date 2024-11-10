@@ -5,9 +5,11 @@ import { useState, useEffect } from "react";
 
 export default function Cart() {
   
-  const { cart, removeItemFromCart, addItemToCart, decreaseQuantity } = useCart();
+  const { cart, removeItemFromCart, addItemToCart, decreaseQuantity, checkout } = useCart();
 
   const [totalPrice, setTotalPrice] = useState(0);
+  
+
 
   useEffect(() => {
     setTotalPrice(cart.reduce((acc, curr) => acc + (curr.price * curr.quantity), 0));
@@ -18,6 +20,7 @@ export default function Cart() {
       <Header />
       <div className="cartContainer">
         <h1>Your Cart</h1>
+        <button className="checkout" onClick={() => checkout()}>Checkout</button>
         <div className="cartTotal">
           <p>Total Price: ${totalPrice}</p>
         </div>

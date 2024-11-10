@@ -28,6 +28,11 @@ export const CartProvider = ({ children }) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== product.id));
   };
 
+  const checkout = () => {
+    setCart([]); // Clear the cart after checkout
+    alert('Thank you for shopping with us!');
+  }
+
   const decreaseQuantity = (product) => {
     setCart((prevCart) => {
       // Check if the product is already in the cart
@@ -51,7 +56,7 @@ export const CartProvider = ({ children }) => {
 
   return (
     <CartContext.Provider
-      value={{ cart, addItemToCart, removeItemFromCart, decreaseQuantity }}
+      value={{ cart, addItemToCart, removeItemFromCart, decreaseQuantity, checkout }}
     >
       {children}
     </CartContext.Provider>
