@@ -1,0 +1,62 @@
+.cartContainer{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.cartCardsContainer{
+    display: flex;
+    gap: 20px;
+}
+
+.cartCard{
+    display: flex;
+    flex-direction: column;
+}
+
+.cartImageContainer {
+    padding: 10px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px; /* Fixed height for the image container */
+}
+
+.cartCard {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    width: 250px;
+    min-height: 350px; /* Set a fixed height for uniformity */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Space items evenly in the card */
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 15px;
+    box-shadow: 0.2px 14.4px 14.4px hsl(0deg 0% 0% / 0.08);
+    text-align: center; /* Center-align text */
+}
+.quantityButtons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.increaseQuantity, .decreaseQuantity{
+    padding: 8px;
+    color: black;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0,0.25);
+  
+    border-radius: 5px;
+    font-size: 12px;
+    transition: all 0.25s ease;
+}
+
+.increaseQuantity:hover, .decreaseQuantity:hover{
+    background-color: black;
+    color: white;
+    transform: scale(1.1);
+}

@@ -57,6 +57,12 @@ export default function Shop() {
   return (
     <div>
       <Header />
+      <div className="categoryChooser">
+        <button>Electronics</button>
+        <button>Jewlery</button>
+        <button>Men's</button>
+        <button>Women's</button>
+      </div>
       <div className="cardsContainer">
         {products.map((category, categoryIndex) => (
           <div className="categorySection" key={categoryIndex}>

@@ -27,8 +27,6 @@
   display: flex;
   flex-direction: column;
   padding: 20px;
-  flex-wrap: wrap;
-  justify-content: center;
 }
 
 .productCard {
@@ -51,7 +49,9 @@
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
+  justify-content: center;
 }
+
 .productImageContainer {
   padding: 10px;
   border-radius: 15px;
