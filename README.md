@@ -1,4 +1,4 @@
-# Kaze E-Commerce Landing Page
+# Kaze E-Commerce Store
 
 Welcome to **Kaze**, an e-commerce web app built with React. Kaze is an online ecommerce web platform designed to help consumers find whatever they need from electronics to clothing.
 
